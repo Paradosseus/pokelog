@@ -8,6 +8,7 @@ export const Main = () => {
 
     const [pokeData, setpokeData] = useState([]);
     const [selectedPokemon, setSelectedPokemon] = useState(null);
+
     let arr = [];
 
     useEffect(() => {
@@ -33,45 +34,61 @@ export const Main = () => {
         pokeData.map((pokemon) => {
             if (pokemon.id === id) {
                 setSelectedPokemon(pokemon)
-                console.log(selectedPokemon);
+
             }
         })
     }
-
-
-
-
     return (
         <div className="h-screen grid grid-rows-5">
-            <div className="bg-[#7D1818] row-span-3 flex justify-center items-center">
-                <div className="bg-[#D9D9D9] bg-opacity-75 w-[350px] h-[350px] rounded-2xl p-6">
+            <div className="bg-[#7D1818] row-span-3 p-5">
+                <div className="py-4"><input type="text" className="bg-transparent border-b-[1px] w-full focus:outline-none text-white" placeholder="Search pokemon..." /></div>
+                <div className="bg-[#D9D9D9] bg-opacity-75 w-full h-[350px] rounded-2xl p-6 m-auto">
                     {selectedPokemon ? (
                         <div>
-                            <div>
+                            <div className="my-2">
                                 <img src={require(`../assets/animated-sprites/${selectedPokemon.id}.gif`)} alt="" className="h-[100px] mx-auto" />
                             </div>
                             <div className="text-center">
-                                <h1 className="font-bold text-2xl capitalize">{selectedPokemon.name}</h1>
-                                <ul>
-                                    {selectedPokemon.types.map((typeData, index) => (
-                                        <li className="inline-block mx-1 border rounded-3xl px-3 py-1 text-xs font-semibold capitalize" key={index}>{typeData.type.name}</li>)
-                                    )}
-                                </ul>
-                                <div className="text-left text-m">
-                                    <span className="font-bold capitalize">Abilites: {selectedPokemon.abilities.map((abilityData, index) => (<span key={index}>{abilityData.ability.name}{index < selectedPokemon.abilities.length - 1 ? ', ' : ''}</span>))}</span>
+                                <h1 className="font-bold text-2xl capitalize my-1">{selectedPokemon.name}</h1>
+                                <div className="my-1">
+                                    <ul>
+                                        {selectedPokemon.types.map((typeData, index) => (
+                                            <li className="inline-block mx-1 border-slate-950 rounded-3xl px-3 py-1 text-xs font-bold text-zinc-50 uppercase" style={{
+                                                backgroundColor: typeData.type.name === "bug" ? "#A9B91F" : typeData.type.name === "dark" ? "#3E2D23" :
+                                                    typeData.type.name === "dragon" ? "#6F5BD6" :
+                                                        typeData.type.name === "electric" ? "#FCB915" :
+                                                            typeData.type.name === "fairy" ? "#F2B1F2" :
+                                                                typeData.type.name === "fighting" ? "#81321D" :
+                                                                    typeData.type.name === "fire" ? "#EF4110" :
+                                                                        typeData.type.name === "flying" ? "#93A5F1" :
+                                                                            typeData.type.name === "ghost" ? "#6160B2" :
+                                                                                typeData.type.name === "grass" ? "#73C134" :
+                                                                                    typeData.type.name === "ground" ? "#D5B45D" :
+                                                                                        typeData.type.name === "ice" ? "#96E2FA" :
+                                                                                            typeData.type.name === "normal" ? "#C6C1B7" :
+                                                                                                typeData.type.name === "poison" ? "#924491" :
+                                                                                                    typeData.type.name === "psychic" ? "#E2497F" :
+                                                                                                        typeData.type.name === "rock" ? "#BBA359" :
+                                                                                                            typeData.type.name === "steel" ? "#A0A0AE" :
+                                                                                                                typeData.type.name === "water" ? "#3495F6" : "none"
+                                            }} key={typeData.type.name}>{typeData.type.name}</li>)
+                                        )}
+                                    </ul>
                                 </div>
-                                <div className="text-left">
-                                    <div className="font-bold">Height: {selectedPokemon.height / 10 + "m"
+                                <div className="text-left leading-loose">
+                                    <div className="capitalize">
+                                        <span className="font-bold">Abilites:</span> {selectedPokemon.abilities.map((abilityData, index) => (<span key={index}>{abilityData.ability.name}{index < selectedPokemon.abilities.length - 1 ? ', ' : ''}</span>))}
+                                    </div>
+                                    <div><span className="font-bold">Height:</span> {selectedPokemon.height / 10 + "m"
                                     }</div>
-                                    <div className="font-bold">Weight: {selectedPokemon.weight / 10 + "kg"}</div>
-                                </div>
-                                <div className="text-left font-bold">
-                                    <h3>Stats:</h3>
+                                    <div><span className="font-bold">Weight:</span> {selectedPokemon.weight / 10 + "kg"}</div>
                                 </div>
                             </div>
                         </div>
                     ) : (
-                        <p>Select a Pokemon</p>
+                        <div className="h-full flex items-center justify-center">
+                            <p className="text-xl font-bold">Select a Pokemon</p>
+                        </div>
                     )}
                 </div>
             </div>
