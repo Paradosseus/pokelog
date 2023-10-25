@@ -10,22 +10,27 @@ export const Main = () => {
 
     useEffect(() => {
         const getData = async () => {
-            const response = await Axios.get("https://pokeapi.co/api/v2/pokemon?limit=150")
-            const fetchedData = await response.data.results;
+            try {
+                const response = await Axios.get("https://pokeapi.co/api/v2/pokemon?limit=150");
+                const fetchedData = await response.data.results;
 
-            const promise = fetchedData.map(async (data) => {
-                const response = await Axios.get(data.url);
-                return response.data;
-            });
+                const promise = fetchedData.map(async (data) => {
+                    const response = await Axios.get(data.url);
+                    return response.data;
+                });
 
-            const data = await Promise.all(promise);
+                const data = await Promise.all(promise);
 
-            setpokeData(data);
+                setpokeData(data);
+            } catch (error) {
+                // Handle the error here, e.g., set an error state or log the error.
+                console.error("Error fetching Pokemon data:", error);
+            }
+        };
 
-        }
         return () => getData();
-
     }, []);
+
 
     const clickedPokemon = (id) => {
         pokeData.map((pokemon) => {
