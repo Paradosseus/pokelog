@@ -11,7 +11,7 @@ export const Main = () => {
     useEffect(() => {
         const getData = async () => {
             try {
-                const response = await Axios.get("https://pokeapi.co/api/v2/pokemon?limit=150");
+                const response = await Axios.get(process.env.REACT_APP_POKEMON_API_URL);
                 const fetchedData = await response.data.results;
 
                 const promise = fetchedData.map(async (data) => {
