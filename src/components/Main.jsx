@@ -8,28 +8,27 @@ export const Main = () => {
     const [pokeData, setpokeData] = useState([]);
     const [selectedPokemon, setSelectedPokemon] = useState(null);
 
-    useEffect(() => {
-        const getData = async () => {
-            try {
-                const response = await Axios.get(process.env.REACT_APP_POKEMON_API_URL);
-                const fetchedData = await response.data.results;
+    const getData = async () => {
+        try {
+            const response = await Axios.get(process.env.REACT_APP_POKEMON_API_URL);
+            const fetchedData = await response.data.results;
 
-                const promise = fetchedData.map(async (data) => {
-                    const response = await Axios.get(data.url);
-                    return response.data;
-                });
+            const promise = fetchedData.map(async (data) => {
+                const response = await Axios.get(data.url);
+                return response.data;
+            });
 
-                const data = await Promise.all(promise);
+            const data = await Promise.all(promise);
 
-                setpokeData(data);
-            } catch (error) {
-                // Handle the error here, e.g., set an error state or log the error.
-                console.error("Error fetching Pokemon data:", error);
-            }
-        };
+            setpokeData(data);
+        } catch (error) {
+            // Handle the error here, e.g., set an error state or log the error.
+            console.error("Error fetching Pokemon data:", error);
+        }
+    };
 
-        return () => getData();
-    }, []);
+    getData();
+
 
 
     const clickedPokemon = (id) => {
