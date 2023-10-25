@@ -10,7 +10,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #7D1818;
+  background-color: #FE4C3E;
 }
 
 code {
@@ -20,10 +20,9 @@ code {
 
 
 *{
-  /* border: solid 1px black; */
+
   font-family: Jura, Arial,sans-serif;
 
-  
 }
 
 
