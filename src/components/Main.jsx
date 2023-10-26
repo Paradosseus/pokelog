@@ -46,11 +46,10 @@ export const Main = () => {
 
 
 
-
     const clickedPokemon = (id) => {
         pokemons.map((pokemon, index) => {
             if ((index + 1) === id) {
-                setSelectedPokemon(pokemon)
+                setSelectedPokemon(pokemon);
             }
 
         })
