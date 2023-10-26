@@ -32,8 +32,8 @@ export const PreviewPokemon = (pokemon) => {
 
 
     return (
-        <div className="m-auto absolute top-[50%] left-[50%] translate-y-[-50%] translate-x-[-50%] w-full h-full z-1">
-            {pokeData ? (
+        <>
+            {pokeData && (
                 <div className="h-full relative">
                     <div className="absolute left-[50%] translate-x-[-50%] lg:top-[72%] md:top-[65%] rounded-2xl lg:w-[600px] md:w-[400px] lg:px-6 lg:py-4 md:px-4 md:py-2 border-4 border-black bg-white text-black">
                         <div className="capitalize text-center lg:text-[30px] md:text-[20px] font-black">{pokeData?.name}</div>
@@ -75,12 +75,8 @@ export const PreviewPokemon = (pokemon) => {
                         <img src={require(`../assets/animated-sprites/${pokeData?.id}.gif`)} alt="" className="h-[100px] md:h-[120px] lg:h-[200px] mx-auto" />
                     </div>
                 </div>
-            ) : (
-                <div className="h-full flex items-center justify-center">
-                    <p className="text-[18px] md:text-[25px] font-bold text-white">Select a Pokemon</p>
-                </div>
             )}
-        </div>
+        </>
     );
 }
 
