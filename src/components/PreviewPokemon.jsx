@@ -35,12 +35,12 @@ export const PreviewPokemon = (pokemon) => {
         <>
             {pokeData && (
                 <div className="h-full relative">
-                    <div className="absolute left-[50%] translate-x-[-50%] lg:top-[72%] md:top-[65%] rounded-2xl lg:w-[600px] md:w-[400px] lg:px-6 lg:py-4 md:px-4 md:py-2 border-4 border-black bg-white text-black">
-                        <div className="capitalize text-center lg:text-[30px] md:text-[20px] font-black">{pokeData?.name}</div>
+                    <div className="absolute left-[50%] translate-x-[-50%] lg:top-[60%] md:top-[64%] top-[62%] rounded-2xl w-[300px] lg:w-[450px] md:w-[360px] lg:px-6 lg:py-4 md:px-3 md:py-1 px-2 py-1 border-4 border-black bg-white text-black">
+                        <div className="capitalize text-center lg:text-[30px] md:text-[25px] font-black">{pokeData?.name}</div>
                         <div className="text-center mb-2">
                             <ul>
                                 {pokeData?.types.map((typeData, index) => (
-                                    <li className="inline-block mx-1 text-center rounded-3xl py-1 text-[10px] md:text-[12px] font-bold text-zinc-50 uppercase w-[50px] md:w-[60px]" style={{
+                                    <li className="inline-block mx-[2px] text-center rounded-3xl py-1 lg:text-[12px] md:text-[10px] text-[8px] font-bold text-zinc-50 uppercase lg:w-[55px] md:w-[45px] w-[40px]" style={{
                                         backgroundColor: typeData.type.name === "bug" ? "#A9B91F" : typeData.type.name === "dark" ? "#3E2D23" :
                                             typeData.type.name === "dragon" ? "#6F5BD6" :
                                                 typeData.type.name === "electric" ? "#FCB915" :
@@ -63,16 +63,16 @@ export const PreviewPokemon = (pokemon) => {
                             </ul>
                         </div>
                         <div className="capitalize">
-                            <div className="md:text-[20px]">
+                            <div className="lg:text-[20px] md:text-[15px]">
                                 <span className="font-bold ">Abilities:</span> {pokeData?.abilities.map((abilityData, index) => (<span key={index}>{abilityData.ability.name}{index < pokeData?.abilities.length - 1 ? ', ' : ''}</span>))}
                             </div>
-                            <div className="md:text-[20px]"><span className="font-bold">Height:</span> {pokeData?.height / 10 + "m"
+                            <div className="lg:text-[20px] md:text-[15px]"><span className="font-bold">Height:</span> {pokeData?.height / 10 + "m"
                             }</div>
-                            <div className="md:text-[20px]"><span className="font-bold">Weight:</span> {pokeData?.weight / 10 + "kg"}</div>
+                            <div className="lg:text-[20px] md:text-[15px]"><span className="font-bold">Weight:</span> {pokeData?.weight / 10 + "kg"}</div>
                         </div>
                     </div>
                     <div className="absolute top-[50%] left-[50%] translate-y-[-50%] translate-x-[-50%]">
-                        <img src={require(`../assets/animated-sprites/${pokeData?.id}.gif`)} alt="" className="h-[100px] md:h-[120px] lg:h-[200px] mx-auto" />
+                        <img src={require(`../assets/animated-sprites/${pokeData?.id}.gif`)} alt="" className="h-[100px] md:h-[120px] lg:h-[150px] mx-auto" />
                     </div>
                 </div>
             )}
