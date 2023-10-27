@@ -1,14 +1,13 @@
-import Axios, { all } from "axios";
+import Axios from "axios";
 import { useState } from "react";
 import pokelogLogo from "../assets/pokelog-logo.svg";
 import { useQuery } from "@tanstack/react-query";
 import { PreviewPokemon } from "./PreviewPokemon";
 import { PokeNavBar } from "./PokeNavBar";
-import { SearchBar } from "./SearchBar";
 export const Main = () => {
     const [selectedPokemon, setSelectedPokemon] = useState(null);
 
-    const { data: pokemons, isLoading, isError, isFetched } = useQuery({
+    const { data: pokemons, isLoading, isError, error } = useQuery({
         queryFn: async () => {
             const fetchInitialPokeData = await Axios.get('https://pokeapi.co/api/v2/pokemon?limit=150').then((res) => res.data.results)
 
@@ -23,35 +22,22 @@ export const Main = () => {
         queryKey: ["pokemons"]
     });
 
-    // const { data: pokeData } = useQuery({
-    //     queryFn: (pokemons) => {
-    //         if (pokemons) {
-    //             const fetchPokemonData = pokemons.map((pokemon) => {
-    //                 Axios.get(pokemon.url).then((res) => res.data)
-    //             });
-    //             return Promise.all(fetchPokemonData);
-    //         }
-    //     },
-    //     queryKey: ["pokeData"],
-    //     enabled: !!pokemons
-    // });
-
-
-
     if (isLoading) {
         return <h1>Loading....</h1>
     }
 
+    if (isError) {
+        return <h1>There was an error encountered: {error}  </h1>
+    }
 
     const clickedPokemon = (id) => {
         pokemons.map((pokemon) => {
             if (pokemon.id === id) {
-                setSelectedPokemon(pokemon);
+                return setSelectedPokemon(pokemon);
             }
 
         })
     }
-
 
 
     return (
