@@ -1,5 +1,6 @@
 import pokelogLogo from "../assets/pokelog-logo.svg";
 import { useState } from "react";
+import { motion } from "framer-motion";
 export const PokeNavBar = (props) => {
     const [searchInput, setSearchInput] = useState("");
 
