@@ -29,6 +29,13 @@ export const Main = () => {
     if (isError) {
         return <h1>There was an error encountered: {error}  </h1>
     }
+    if (isLoading) {
+        return (
+            <>
+                <div className="flex justify-center items-center h-screen"><span className="lg:text-[40px] text-[25px] md:text-[30px] font-bold">Loading</span></div>
+            </>
+        )
+    }
 
     const clickedPokemon = (id) => {
         pokemons.map((pokemon) => {

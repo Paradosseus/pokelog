@@ -19,11 +19,7 @@ export const PreviewPokemon = (pokemon) => {
 
 
     if (isLoading) {
-        return (
-            <>
-                <div className="flex justify-center items-center h-screen w-screen">Loading</div>
-            </>
-        )
+        return <div>Loading</div>
     }
     if (isError) {
         return (
